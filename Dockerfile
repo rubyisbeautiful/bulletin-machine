@@ -8,4 +8,4 @@ RUN bundle install
 
 EXPOSE 80
 
-CMD bundle exec ruby -s puma -o 0.0.0.0 -p 80
+CMD bundle exec rackup -s puma -o 0.0.0.0 -p 80
