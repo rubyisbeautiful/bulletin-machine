@@ -4,12 +4,19 @@ require 'sinatra'
 require_relative 'lib/thumbnailer'
 
 class BulletinMachine < Sinatra::Base
-
   Thumbnailer.configure do |config|
     config.input_path = Pathname.new(File.expand_path(File.dirname(__FILE__))).join('data/bulletins/originals')
     config.output_path = Pathname.new(File.expand_path(File.dirname(__FILE__))).join('data/bulletins/thumbs')
   end
 
+
+  get '/bulletins' do
+    'form goes here'
+  end
+
+  post '/callback' do
+    params.to_yaml
+  end
 
   post '/bulletins/:filename' do
     filename = params[:filename].to_s[/[\w\s]+\.\w{3}/]
